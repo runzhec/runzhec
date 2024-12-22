@@ -15,7 +15,8 @@ root.render(
         <Route path="/journal" element={<Journal />} />
         <Route path="/crime-map" element={<CrimeMap />} />
         {/* <Route path="/guessing-game" element={<GuessingGame />} /> */}
-        {/* <Route path="*" element={<ErrorPage />} /> */}
+        {/*Make real error pg later*/}
+        <Route path="*" element={<Landing />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
