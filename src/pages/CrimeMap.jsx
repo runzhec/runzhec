@@ -1,32 +1,106 @@
 import "../assets/css/global.css";
-import React, { useRef, useEffect } from "react";
-import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
+import React, { useState, useEffect } from "react";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+  InfoWindow,
+} from "@vis.gl/react-google-maps";
 import { useBodyBackground } from "../utils/css-utils";
 
-// Don't forget to restrict and protect your API key later
-// https://developers.google.com/maps/api-security-best-practices#restricting-api-keys
+const getData = (setData, horizon, flag) => {
+  const url = `https://runzhec.com/flask_app_runzhec/crime?horizon=${horizon}&flag=${flag}`;
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setData(data);
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
 
-const MapComponent = ({ center, apiKey }) => {
+const MapComponent = ({ center, data }) => {
   const containerStyle = {
     width: "90%",
     height: "550px",
   };
+  const mapId = process.env.REACT_APP_MAP_ID;
+  const mapProps = {
+    defaultCenter: center,
+    defaultZoom: 15,
+    mapId: mapId,
+    style: containerStyle,
+    options: {
+      disableDefaultUI: false,
+      draggable: true,
+      scrollwheel: true,
+      gestureHandling: "auto",
+    },
+  };
 
-  const zoom = 15;
+  // State to track the currently selected marker
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
+  // Define your markers with additional info
+  const markers = [];
+
+  data.forEach((point, index) => {
+    const lat = parseFloat(point.lat);
+    const lng = parseFloat(point.lng);
+    markers.push({
+      id: index,
+      position: {
+        lat: lat,
+        lng: lng,
+      },
+      color: point.flag === "Red" ? "#E60000" : "#FF6600",
+      glyph: "1",
+      info: point.comments,
+    });
+  });
 
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
-        <MarkerF position={center} />
-      </GoogleMap>
-    </LoadScript>
+    <Map {...mapProps}>
+      {markers.map((marker) => (
+        <AdvancedMarker
+          key={marker.id}
+          position={marker.position}
+          onClick={() => setSelectedMarker(marker.id)}
+        >
+          <Pin
+            background={marker.color}
+            glyphColor="#ffffff"
+            glyph={marker.glyph}
+          />
+          {selectedMarker === marker.id && (
+            <InfoWindow
+              headerContent={<h3>Criminal Activity</h3>}
+              position={marker.position}
+              onCloseClick={() => setSelectedMarker(null)}
+            >
+              {marker.info}
+            </InfoWindow>
+          )}
+        </AdvancedMarker>
+      ))}
+    </Map>
   );
 };
 
 export default function CrimeMap() {
   useBodyBackground("white");
+  const [data, setData] = useState([]);
 
-  // Use an environment variable to secure the API key
+  useEffect(() => getData(setData, "1y", "ro"), []);
+
   const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const center = {
@@ -35,16 +109,16 @@ export default function CrimeMap() {
   };
 
   return (
-    <>
+    <APIProvider apiKey={apiKey}>
       <div className="maroon-bar" />
       <div className="default-margin">
         <div className="default-title">
           <h1 className="title-text-nf-m maroon-text">UChicago Crime Map</h1>
         </div>
         <div className="page-body mt-m">
-          <MapComponent center={center} apiKey={apiKey} />
+          <MapComponent data={data} center={center} />
         </div>
       </div>
-    </>
+    </APIProvider>
   );
 }
