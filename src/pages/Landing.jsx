@@ -66,7 +66,7 @@ export default function Landing() {
         </p>
         <p className="text body-text">Get to know me a little bit more!!</p>
       </div>
-      <TwoColumn />
+      {/* <TwoColumn /> */}
     </div>
   );
 }
