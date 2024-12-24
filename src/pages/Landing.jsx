@@ -47,8 +47,20 @@ export default function Landing() {
       <div className="default-title">
         <h1 className="text title-text">
           <div className="pad-right-mini">Runzhe Cui</div>
-          <img src={github} className="image-link" alt="github link" />
-          <img src={linkedin} className="image-link" alt="linkedin link" />
+          <a
+            href="https://github.com/runzhec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={github} className="image-link" alt="github link" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/runzhe-cui/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={linkedin} className="image-link" alt="linkedin link" />
+          </a>
         </h1>
       </div>
       <hr className="divider" />
