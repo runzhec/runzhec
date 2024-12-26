@@ -64,6 +64,7 @@ const MapComponent = ({ center, data }) => {
       color: point.flag === "Red" ? "#E60000" : "#FF6600",
       glyph: "1",
       info: point.comments,
+      time: point.occurred.substring(0, point.occurred.length - 12),
     });
   });
 
@@ -85,8 +86,11 @@ const MapComponent = ({ center, data }) => {
               headerContent={<h3>Criminal Activity</h3>}
               position={marker.position}
               onCloseClick={() => setSelectedMarker(null)}
+              maxWidth={550}
             >
               {marker.info}
+              <hr />
+              {marker.time}
             </InfoWindow>
           )}
         </AdvancedMarker>
