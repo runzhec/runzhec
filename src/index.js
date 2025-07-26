@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Journal from "./pages/Journal";
 import CrimeMap from "./pages/CrimeMap";
+import MilesOfMemories from "./pages/K2.tsx";
+import GeoGuesser from "./pages/GeoGuesser";
 import GuessingGame from "./pages/GuessingGame";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,9 +14,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route index element={<Landing />} />
+        <Route path="/k&r" element={<MilesOfMemories />} />
         <Route path="/journal" element={<Journal />} />
         <Route path="/crime-map" element={<CrimeMap />} />
-        {/* <Route path="/guessing-game" element={<GuessingGame />} /> */}
+        <Route path="/uchicago-geoguesser" element={<GeoGuesser />} />
+        <Route path="/guessing-game" element={<GuessingGame />} />
         {/*Make real error pg later*/}
         <Route path="*" element={<Landing />} />
       </Routes>
