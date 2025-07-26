@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import {
   APIProvider,
@@ -172,6 +172,20 @@ const trips = [
   },
 ];
 
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(
+    () => window.innerWidth < breakpoint
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+
 const DEFAULT_CENTER = { lat: 41.8827, lng: -87.6293 };
 const DEFAULT_ZOOM = 15;
 
@@ -187,53 +201,65 @@ const COLORS = [
   "#5ECDE0",
 ];
 
-const MilesOfMemories = () => (
-  <APIProvider apiKey={apiKey}>
-    <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <Map
-        style={{ width: "100%", height: "100%", position: "absolute" }}
-        defaultCenter={DEFAULT_CENTER}
-        defaultZoom={DEFAULT_ZOOM}
-        gestureHandling="greedy"
-        fullscreenControl={false}
-      >
-        <Directions trips={trips} />
-      </Map>
+const MilesOfMemories = () => {
+  const isMobile = useIsMobile();
 
-      <div
-        style={{
-          position: "absolute",
+  const cardStyle = {
+    position: "absolute",
+    ...(isMobile
+      ? {
+          top: 14,
+          left: "8%",
+          transform: "translateX(-8%)",
+        }
+      : {
           top: 35,
           left: 35,
-          zIndex: 10,
-          background: "#fff",
-          borderRadius: 12,
-          padding: "1rem",
-          boxShadow: "0 2px 8px rgba(0,0,0,.15)",
-          maxWidth: 300,
-          pointerEvents: "auto",
-          display: "flex", // ⬅️ put items on one line
-          alignItems: "center", // ⬅️ vertical centering
-          gap: "0", // ⬅️ space between them (optional)
-        }}
-      >
-        <h3 style={{ margin: 0 }}>Miles of Memories</h3>
-        <DotLottieReact
-          style={{
-            width: 40,
-            height: 40,
-            flexShrink: 0,
-            alignSelf: "flex-start",
-            marginTop: "-12px",
-          }}
-          src="bunnyanimation.lottie"
-          loop
-          autoplay
-        />
+        }),
+    zIndex: 10,
+    background: "#fff",
+    borderRadius: 12,
+    padding: "1rem",
+    boxShadow: "0 2px 8px rgba(0,0,0,.15)",
+    maxWidth: 300,
+    pointerEvents: "auto",
+    display: "flex",
+    alignItems: "center",
+    gap: 0,
+  };
+
+  return (
+    <APIProvider apiKey={apiKey}>
+      <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+        <Map
+          style={{ width: "100%", height: "100%", position: "absolute" }}
+          defaultCenter={DEFAULT_CENTER}
+          defaultZoom={DEFAULT_ZOOM}
+          gestureHandling="greedy"
+          fullscreenControl={false}
+        >
+          <Directions trips={trips} />
+        </Map>
+
+        <div style={cardStyle}>
+          <h3 style={{ margin: 0 }}>Miles of Memories</h3>
+          <DotLottieReact
+            style={{
+              width: 40,
+              height: 40,
+              flexShrink: 0,
+              alignSelf: "flex-start",
+              marginTop: "-12px",
+            }}
+            src="bunnyanimation.lottie"
+            loop
+            autoplay
+          />
+        </div>
       </div>
-    </div>
-  </APIProvider>
-);
+    </APIProvider>
+  );
+};
 
 function Directions({ trips }) {
   const map = useMap();
@@ -243,23 +269,30 @@ function Directions({ trips }) {
   const [renderers, setRenderers] = useState([]);
   const [markerSets, setMarkerSets] = useState([]);
 
+  const currentInfoWindowRef = useRef(null);
+
   useEffect(() => {
     if (!map || !window.google) return;
+
     map.setOptions({
       mapTypeControl: true,
       mapTypeControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM,
+        position: window.google.maps.ControlPosition.LEFT_BOTTOM,
       },
     });
+
+    const clickListener = map.addListener("click", () => {
+      if (currentInfoWindowRef.current) currentInfoWindowRef.current.close();
+    });
+
+    return () => window.google.maps.event.removeListener(clickListener);
   }, [map]);
 
   useEffect(() => {
     if (document.getElementById("gm-custom-style")) return;
     const style = document.createElement("style");
     style.id = "gm-custom-style";
-    style.innerHTML = `
-      .gm-ui-hover-effect { display:none !important; }
-    `;
+    style.textContent = `.gm-ui-hover-effect{display:none!important}`;
     document.head.appendChild(style);
   }, []);
 
@@ -275,6 +308,7 @@ function Directions({ trips }) {
 
     renderers.forEach((r) => r.setMap(null));
     markerSets.flat().forEach((m) => m.setMap(null));
+
     setRenderers([]);
     setMarkerSets([]);
 
@@ -284,7 +318,7 @@ function Directions({ trips }) {
           origin,
           destination,
           waypoints,
-          travelMode: google.maps.TravelMode.WALKING,
+          travelMode: window.google.maps.TravelMode.WALKING,
           provideRouteAlternatives: false,
         })
       )
@@ -303,14 +337,14 @@ function Directions({ trips }) {
           suppressMarkers: true,
           polylineOptions: {
             strokeColor: COLORS[idx % COLORS.length],
-            strokeOpacity: 1.0,
+            strokeOpacity: 1,
             strokeWeight: 5,
           },
         });
         newRenderers.push(dr);
 
         const markerIcon = {
-          path: google.maps.SymbolPath.CIRCLE,
+          path: window.google.maps.SymbolPath.CIRCLE,
           fillColor: COLORS[idx % COLORS.length],
           fillOpacity: 1,
           strokeColor: "#ffffff",
@@ -319,28 +353,38 @@ function Directions({ trips }) {
         };
 
         const createMarkerWithTooltip = (position, tooltipText) => {
-          const marker = new google.maps.Marker({
+          const marker = new window.google.maps.Marker({
             position,
             map,
             icon: markerIcon,
             title: tooltipText,
           });
-          const infoWin = new google.maps.InfoWindow({
+
+          const infoWin = new window.google.maps.InfoWindow({
             content: `<div>${tooltipText}</div>`,
             disableAutoPan: true,
           });
+
           marker.addListener("mouseover", () =>
             infoWin.open({ anchor: marker, map })
           );
           marker.addListener("mouseout", () => infoWin.close());
-          marker.addListener("click", () =>
-            infoWin.open({ anchor: marker, map })
-          );
+
+          marker.addListener("click", () => {
+            if (
+              currentInfoWindowRef.current &&
+              currentInfoWindowRef.current !== infoWin
+            ) {
+              currentInfoWindowRef.current.close();
+            }
+            infoWin.open({ anchor: marker, map });
+            currentInfoWindowRef.current = infoWin;
+          });
+
           return marker;
         };
 
         const routeLegs = resp.routes[0].legs;
-
         const originMarker = createMarkerWithTooltip(
           routeLegs[0].start_location,
           trip.originTooltip || routeLegs[0].start_address
@@ -348,11 +392,11 @@ function Directions({ trips }) {
 
         const waypointMarkers = routeLegs
           .slice(0, -1)
-          .map((lg, wpIdx) =>
+          .map((leg, wpIdx) =>
             createMarkerWithTooltip(
-              lg.end_location,
+              leg.end_location,
               (trip.waypointTooltips && trip.waypointTooltips[wpIdx]) ||
-                lg.end_address
+                leg.end_address
             )
           );
 

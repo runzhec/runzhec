@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Journal from "./pages/Journal";
 import CrimeMap from "./pages/CrimeMap";
-import MilesOfMemories from "./pages/K2.tsx";
+import MilesOfMemories from "./pages/MilesOfMemories.tsx";
 import GeoGuesser from "./pages/GeoGuesser";
 import GuessingGame from "./pages/GuessingGame";
 
