@@ -7,6 +7,7 @@ import CrimeMap from "./pages/CrimeMap";
 import MilesOfMemories from "./pages/MilesOfMemories.tsx";
 import GeoGuesser from "./pages/GeoGuesser";
 import GuessingGame from "./pages/GuessingGame";
+import Valentines from "./pages/Valentines";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="/crime-map" element={<CrimeMap />} />
         <Route path="/uchicago-geoguesser" element={<GeoGuesser />} />
         <Route path="/guessing-game" element={<GuessingGame />} />
+        <Route path="/valentines-katherine" element={<Valentines />} />
         {/*Make real error pg later*/}
         <Route path="*" element={<Landing />} />
       </Routes>
