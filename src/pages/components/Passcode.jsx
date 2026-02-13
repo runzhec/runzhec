@@ -26,7 +26,7 @@ export default function ValentinePasscode({
 
   // add special wrong guess messages here
   const specialGuessMessages = {
-    "011626": "let's do qubec this time",
+    "011626": "let's do quebec this time",
     "072625": "i can't make it THAT ez",
     676767: "brain rotted af",
     696969: "tn?",
@@ -40,7 +40,7 @@ export default function ValentinePasscode({
   // hint has priority over special messages
   const titleText =
     wrongGuesses === 7
-      ? "seems like ur having trouble(hint: coach)"
+      ? "seems like ur having trouble(hint: couch)"
       : specialGuessMessages[String(lastWrongGuess)] || "Enter Passcode";
 
   // validate when we reach length
