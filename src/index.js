@@ -24,6 +24,7 @@ root.render(
         <Route path="/guessing-game" element={<GuessingGame />} />
         <Route path="/valentines-katherine" element={<Valentines />} />
         <Route path="/stars" element={<NightSky />} />
+        <Route path="/total-stars" element={<NightSky isTotal={true} />} />
         <Route path="/star-counter" element={<StarCounterButton />} />
 
         {/*Make real error pg later*/}
