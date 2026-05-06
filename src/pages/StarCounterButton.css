@@ -1,0 +1,48 @@
+.star-counter-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+.star-counter-button {
+  padding: 24px 48px;
+  border: none;
+  border-radius: 999px;
+  background: #facc15;
+  color: #1c1c1c;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(250, 204, 21, 0.35);
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.star-counter-button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 16px 42px rgba(250, 204, 21, 0.45);
+}
+
+.star-counter-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+.star-counts {
+  padding: 22px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 20px;
+  line-height: 1.5;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.star-counts p {
+  margin: 8px 0;
+}

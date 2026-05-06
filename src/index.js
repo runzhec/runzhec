@@ -8,6 +8,8 @@ import MilesOfMemories from "./pages/MilesOfMemories.tsx";
 import GeoGuesser from "./pages/GeoGuesser";
 import GuessingGame from "./pages/GuessingGame";
 import Valentines from "./pages/Valentines";
+import NightSky from "./pages/NightSky";
+import StarCounterButton from "./pages/StarCounterButton";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +23,9 @@ root.render(
         <Route path="/uchicago-geoguesser" element={<GeoGuesser />} />
         <Route path="/guessing-game" element={<GuessingGame />} />
         <Route path="/valentines-katherine" element={<Valentines />} />
+        <Route path="/stars" element={<NightSky />} />
+        <Route path="/star-counter" element={<StarCounterButton />} />
+
         {/*Make real error pg later*/}
         <Route path="*" element={<Landing />} />
       </Routes>
