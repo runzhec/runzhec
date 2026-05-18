@@ -10,6 +10,7 @@ import GuessingGame from "./pages/GuessingGame";
 import Valentines from "./pages/Valentines";
 import NightSky from "./pages/NightSky";
 import StarCounterButton from "./pages/StarCounterButton";
+import Garden from "./pages/Garden";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,7 @@ root.render(
         <Route path="/stars" element={<NightSky />} />
         <Route path="/total-stars" element={<NightSky isTotal={true} />} />
         <Route path="/star-counter" element={<StarCounterButton />} />
+        <Route path="/garden" element={<Garden />} />
 
         {/*Make real error pg later*/}
         <Route path="*" element={<Landing />} />
