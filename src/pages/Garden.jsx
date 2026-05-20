@@ -375,7 +375,7 @@ export default function Garden() {
         y: 30.93,
         title: "Pond, Bridge, and Water Lilies",
         description:
-          "This lower pond helps complete the garden’s miniature mountain landscape: water flows down from the rocky cascade and settles here into a calm pool. The arched bridge, stones, and water lilies fit traditional Japanese garden ideas by encouraging slow movement, reflection, and carefully framed views across water.",
+          "The lower pond adds to the garden's miniature moutain landscape. The water flows down from the rocky waterfall and settles into this calm pool. The arched bridge, stones, and lilies fit traditional Japanese garden features, which helps to encourage slow movement and reflection",
         detailImage: lily,
       },
       {
@@ -384,7 +384,7 @@ export default function Garden() {
         y: 59,
         title: "Water Spouts and Stepping Stones",
         description:
-          'This area shows how Hillwood’s Japanese style garden blends tradition with adaptation. The stepping stones, lantern, guard dogs, rocks, and pond follow Japanese garden ideas by creating a slow, reflective path through a miniature landscape. The garden notes explain that the whole space represents a mountainside stream flowing through waterfalls and ponds before resting in a lake at the bottom of the hillside. The water spouts in this area is an example of a deviation from traditional Japanese gardens, which typically uses more natural water sources. However, this aligns with the garden\'s vision of being more "active".',
+          'This part of the garden showcases how the Hillwood Japanese style garden blends tradition with adaptation. There are many traditional Japanese garden elements including the stepping stones, lantern, guard dogs, rocks, and pond. The notes explain that this space represents a mountainside stream which flows through waterfalls and bonds. The water spouts in this area is an example of a deviation from traditional Japanese gardens, which typically uses more natural water sources. However, this aligns with the garden\'s vision of being more "active".',
         detailImage: stoneSteps,
       },
       {
@@ -393,7 +393,7 @@ export default function Garden() {
         y: 51,
         title: "Waterfall",
         description:
-          "This waterfall is central to the garden’s design because it turns Hillwood’s steep hillside into a miniature mountain landscape. The rushing water, large boulders, and layered rocks create the feeling of a mountain stream flowing downward into calmer ponds below. This fits traditional Japanese garden design, where rocks and water often represent natural landscapes in reduced form. Hillwood’s notes describe the garden as a “mountainside landscape in miniature,” with a stream moving through waterfalls and ponds before reaching a lake at the base of the hill. At the same time, the feature also shows Hillwood’s hybrid approach. Myaida transformed a narrow stream into a more dramatic cascade with vertical drops, making the hillside feel theatrical and visually impressive for an American estate garden.",
+          "This waterfall is central to the garden's design, it is a showcasing a mintature mountain landscape. The rushing water, combinded with the large booulders and layered rocks helps to create a feeling of a stream flowing down the mountain. Furthermore, this illustrates Hillwood's hybrid approach where the stream contains multiple dramatic vertical drops and jetting rocks, making the garden feel more active and theatrical.",
         detailImage: falls,
       },
       {
@@ -402,7 +402,7 @@ export default function Garden() {
         y: 65,
         title: "Twin Bridges",
         description:
-          "These bridges create a sense of passage, guiding visitors across the water and onto the small island. In Japanese gardens, bridges often mark a transition from one space or viewpoint to another, encouraging people to slow down and experience the pond, rocks, plants, and lanterns from different angles. The curved wooden form also adds visual rhythm to the pond. Instead of being purely functional, the bridges become part of the scenery, framing the water and helping the island feel like a quiet destination within the garden. They support the garden’s larger theme of a miniature natural landscape, where visitors move through a peaceful world of water, stone, plants, and carefully arranged views.",
+          "The arched bridges are a signature element of Japanese gardens, which helps to create a sense of passage, guiding visitors across the water to the small island. The arched bridge, helps to encourage people to slow down and exprience the beauty of the garden from multiple different angles. The curved nature of the bridge also helps the bridge to become part of the scenery and helping to make the island feel more like a quiet destination within the garden.",
         detailImage: twoBridges,
       },
       {
@@ -411,7 +411,7 @@ export default function Garden() {
         y: 39.5,
         title: "Stepping Stone Path",
         description:
-          "This stepping stone path changes the pond from something visitors simply look at into something they physically move through. The stones create a slow, careful crossing over the water, which fits Japanese garden design because it encourages attention to balance, movement, and changing views. As visitors cross, they see the pond, bridges, lanterns, rocks, and plants from the middle of the landscape rather than only from the edge. This feature is also important because it was not part of the original sketch. It appears to have been added later as Myaida developed the garden, making the lower pond more interactive and immersive.",
+          "This stepping stone path, instead of just being rocks of visitors to look at, allows for visitos to be able to physically move through the garden. Through this stone path, visitors are able to see the bond, bridge, and most notably the waterfall from a different view point. This feature is also important because it was not part of the original sketch. It appears to have been added later as Myaida developed the garden, making the lower pond more interactive and immersive.",
         detailImage: newStonePath,
       },
       {
@@ -420,7 +420,7 @@ export default function Garden() {
         y: 48,
         title: "Stone Bridge",
         description:
-          "This stone bridge helps turn the garden into a physical journey rather than just a view. Its rough, flat stones blend into the surrounding boulders, making the bridge feel like part of the landscape instead of a separate architectural object. This conforms to Japanese garden design because it uses natural materials, frames views of water and plants, and encourages slow, careful movement through the space. The bridge adds to the garden’s theme by connecting water, stone, plants, and movement. It makes the visitor feel as if they are crossing through a miniature mountain landscape, reinforcing the garden’s overall sense of escape, calm, and controlled natural beauty.",
+          "The stone bridge is what helps turn the garden from a simple view into a path you actually walk. Its apperance of being rough and being tucked into the nearby boulders, helps make the whole thing look like it belongs to the earth rather than being a separate piece of architecture. By linking the water, the rocks, and the greenery, the bridge makes you feel like you're trekking through a tiny mountain range. ",
         detailImage: stoneBridge,
       },
       {
@@ -429,7 +429,7 @@ export default function Garden() {
         y: 62.5,
         title: "Island",
         description:
-          "The island makes the pond feel like a small world within the garden. Instead of leaving the water as an open pool, the island gives the scene a center and creates a destination that visitors can reach by bridge or stepping stones. This fits Japanese garden design because islands often suggest separation, reflection, and a miniature natural landscape surrounded by water.",
+          "The islands is also makes the pond feel like a small world within the overall garden. Instead of just leaving the pool as empty/open, the island helps give the scene a center and creates a destination for visitors. These types of islands are a common theme in Japanese gardens as the islands often help to suggest seperation and reflection.",
         detailImage: island,
       },
       {
@@ -438,7 +438,7 @@ export default function Garden() {
         y: 48.8,
         title: "Wooden Gate",
         description:
-          "The wooden gate works more as a visual destination than a normal entrance. In traditional Japanese gardens, gates often mark a boundary between spaces and create a sense of transition. Here, the gate sits at the end of the garden, partially hidden by trees, so it draws the eye through the landscape and gives the pond area a quiet stopping point. At Hillwood, the gate also shows how the garden adapts Japanese design rather than copying it exactly. Myaida positioned the gate as a focal point, where visitors could pause and look back over the garden instead of simply passing through it.",
+          "The wodden gate in this case, is used more as a visual destination than a normal entrance. In traditional Japanese gardens, these gates are often used to mark a boundary between spaces and are used to help create a sense of transition. However, in this case, the gate sits at the end of the garden and is used as a destination rather than a transition piece, refelcting the western influences of the garden. Myaida positioned the gate as a focal point, where visitors could pause and look back over the garden instead of simply passing through.",
         detailImage: gate,
       },
       {
@@ -447,7 +447,7 @@ export default function Garden() {
         y: 82,
         title: "Entrance",
         description:
-          "This entrance figure helps mark the beginning of the Japanese style garden as a separate, more contemplative space. Placed near the path, it signals that visitors are leaving the larger Hillwood estate and entering a smaller world of water, stone, plants, and carefully framed views. This fits Japanese garden design because entrances often create a sense of transition before the visitor moves deeper into the landscape. However, this figure that marks the entrance of the garden is western themed which may be acting as a tranistion between the garden and the rest of the American estate.",
+          "The entrance figure helps mark the start of the Japanese style garden. It is placed near the path to signal to visitors that they are leaving the Hillwood estate and enter the smaller Japanese garden. This fits Japanese garden design as entrances are often used to create a sense of transition. However, this figure is notab ly western themed which may be acting as a tranistion between the garden and the rest of the American estate.",
         detailImage: entrance,
       },
     ],
