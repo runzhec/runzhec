@@ -132,7 +132,7 @@ export default function NightSky({ isTotal = false }) {
       <div className="spaceship-wrapper">
         <div className="spaceship-scene">
           <div className="banner">
-            <span>Studying is ahh</span>
+            <span>katherineeeee let's go to nyc tog!!</span>
           </div>
 
           <div className="spaceship">
