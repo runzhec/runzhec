@@ -25,11 +25,6 @@ const getStars = async () => {
 };
 
 const getTotalStars = async () => {
-  const now = new Date();
-
-  const month = now.getMonth() + 1;
-  const year = now.getFullYear();
-
   const url = `https://runzhec.com/api/totalStars`;
 
   try {
@@ -76,11 +71,9 @@ function createStars(count, skyRect, moonRect) {
         id: stars.length,
         x: xPercent,
         y: yPercent,
-
         size: 4,
         opacity: 0.85,
         blur: 0,
-
         twinkleDelay: 0,
         twinkleDuration: 3,
       });
@@ -93,21 +86,23 @@ function createStars(count, skyRect, moonRect) {
 export default function NightSky({ isTotal = false }) {
   const skyRef = useRef(null);
   const moonRef = useRef(null);
-  const [stars, setStars] = useState([]);
 
+  const [stars, setStars] = useState([]);
   const [starCount, setStarCount] = useState(0);
 
   useEffect(() => {
     const loadStars = async () => {
       let count = await getStars();
+
       if (isTotal) {
         count = await getTotalStars();
       }
+
       setStarCount(count);
     };
 
     loadStars();
-  }, []);
+  }, [isTotal]);
 
   useEffect(() => {
     function generateStars() {
@@ -133,6 +128,23 @@ export default function NightSky({ isTotal = false }) {
       <div className="sky-gradient" />
 
       <div ref={moonRef} className="moon" />
+
+      <div className="spaceship-wrapper">
+        <div className="spaceship-scene">
+          <div className="banner">
+            <span>Good luck with finals!!</span>
+          </div>
+
+          <div className="spaceship">
+            <div className="ship-body">
+              <div className="ship-window" />
+            </div>
+            <div className="ship-fin ship-fin-top" />
+            <div className="ship-fin ship-fin-bottom" />
+            <div className="ship-flame" />
+          </div>
+        </div>
+      </div>
 
       <div className="stars-layer">
         {stars.map((star) => (
